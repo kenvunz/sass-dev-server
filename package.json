@@ -13,7 +13,8 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.4.1",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "temp": "^0.8.3"
   },
   "peerDependencies": {
     "node-sass": "~3.4"

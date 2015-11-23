@@ -1,21 +1,10 @@
 #! /usr/bin/env node
-var cwd = process.cwd(),
-    path = require('path'),
-    Compiler = require('./lib/compiler'),
+var Compiler = require('./lib/compiler'),
     Server = require('./lib/server'),
     meta = require('./package.json'),
     program = require('commander'),
     express = require('express'),
-    config;
-
-try {
-    config = require(path.join(cwd, 'sass-dev-server.config'));
-} catch(e) {
-    config = {
-        server: null,
-        compiler: null
-    };
-}
+    config = require('./lib/config');
 
 program.version(meta.version)
     .option('-p, --port [port]', 'port number to run server on', parseInt)
