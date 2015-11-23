@@ -1,4 +1,4 @@
-import SassDevServer from "../../src";
+var SassDevServer = require('../../lib');
 
 it('should have all included modules', function() {
     expect(SassDevServer).to.be.an('object');
