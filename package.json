@@ -3,18 +3,25 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "sass-dev-server": "cli.js"
+  },
   "scripts": {
     "test": "npm run compile && mocha"
   },
   "author": "Ken Vu <ken@gladeye.co.nz>",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.4.1"
+    "chai": "^3.4.1",
+    "supertest": "^1.1.0"
   },
   "peerDependencies": {
     "node-sass": "~3.4"
   },
   "dependencies": {
-    "bluebird": "^3.0.5"
+    "bluebird": "^3.0.5",
+    "chalk": "^1.1.1",
+    "commander": "^2.9.0",
+    "express": "^4.13.3"
   }
 }
