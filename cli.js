@@ -7,8 +7,9 @@ var Compiler = require('./lib/compiler'),
     config = require('./lib/config');
 
 program.version(meta.version)
-    .option('-p, --port [port]', 'port number to run server on', parseInt)
-    .arguments('[dir]', 'root directory of the server')
+    .option('-p, --port', 'port number to run server on', parseInt)
+    .usage('<root directory> [options]')
+    .arguments('<root directory>')
     .action(function(dir) {
         if(!config.server) config.server = {};
         config.server.root = dir;
