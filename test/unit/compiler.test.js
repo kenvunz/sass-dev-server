@@ -3,6 +3,10 @@ var Compiler = require('../../lib/compiler'),
 
 describe('lib/compiler', function() {
 
+    beforeEach(function() {
+        Compiler.defaults = {};
+    });
+
     describe('render()', function() {
         it('should work as expected', function() {
             var instance = new Compiler(),
@@ -34,6 +38,18 @@ describe('lib/compiler', function() {
                expect(instance.result).to.be.an('object');
                expect(css).to.equal("body{color:red}\n");
            });
+        });
+
+        it('should work with options define via `defaults`', function() {
+            Compiler.defaults = {outputStyle: "compressed"};
+
+            var instance = new Compiler(),
+                file = path.join(__dirname, '../fixtures/render-1.scss');
+            return instance.render(file)
+            .then(function(css) {
+                expect(instance.result).to.be.an('object');
+                expect(css).to.equal("body{color:red}\n");
+            });
         });
     });
 
