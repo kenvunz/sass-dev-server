@@ -9,7 +9,7 @@ var cwd = process.cwd(),
     config;
 
 try {
-    config = require(path.join(cwd, 'sass-server.config'));
+    config = require(path.join(cwd, 'sass-dev-server.config'));
 } catch(e) {
     config = {
         server: null,
