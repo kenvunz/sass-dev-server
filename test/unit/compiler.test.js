@@ -51,6 +51,18 @@ describe('lib/compiler', function() {
                 expect(css).to.equal("body{color:red}\n");
             });
         });
+
+        it('should work with glob style `@import`', function() {
+           Compiler.defaults = {outputStyle: "compressed"};
+
+           var instance = new Compiler(),
+               file = path.join(__dirname, '../fixtures/glob.scss');
+           return instance.render(file)
+           .then(function(css) {
+               expect(instance.result).to.be.an('object');
+               expect(css).to.equal("body{color:blue}\n");
+           }); 
+        });
     });
 
 });
