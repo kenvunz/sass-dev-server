@@ -3,7 +3,7 @@ var Compiler = require('../../lib/compiler'),
 
 describe('lib/compiler', function() {
 
-    beforeEach(function() {
+    afterEach(function() {
         Compiler.defaults = {};
     });
 
