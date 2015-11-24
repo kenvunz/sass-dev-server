@@ -151,3 +151,6 @@ module.exports = {
 - For development use only
 - Use your network IP address or `.local` domain if you are on Mac instead of `localhost`, that will ensure that your stylesheet still working when other machines are viewing the site
 - The server does nothing with path resolution inside your stylesheet, so make sure if your define `--root` parameter, take into account of other things that being referenced inside the stylesheet file, e.g images, fonts
+
+## License
+[MIT](http://www.opensource.org/licenses/mit-license.php)
