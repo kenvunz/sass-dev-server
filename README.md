@@ -1,14 +1,15 @@
 # sass-dev-server
 
-is a server that compile your sass files on demand, no watchers, no configuration required.\
+is a server that compile your sass files on demand, no watcher, no configuration required.
 
 > Note: For development only, do not use in production!
 
 ## Features
 
 - Optional configuration
-- Compile sass insanely fast on demand thanks to (node-sass)[https://github.com/sass/node-sass]
+- Compile sass insanely fast on demand thanks to [node-sass](https://github.com/sass/node-sass)
 - Support glob importing out of the box, e.g `@import "components/*.scss"`
+- Easy integration with other `express` app and build tools
 
 ## Installation
 
@@ -19,13 +20,14 @@ npm install -g sass-dev-server
 ## Usage
 
 ```
-Usage: sass-dev-server <root directory> [options]
+Usage: sass-dev-server [options]
 
- Options:
+Options:
 
-   -h, --help     output usage information
-   -V, --version  output the version number
-   -p, --port     port number to run server on
+  -h, --help         output usage information
+  -V, --version      output the version number
+  -p, --port [port]  port number that server listen to
+  -r, --root [root]  server's root directory
 ```
 
 #### Example
@@ -39,15 +41,85 @@ myproject
 |       └── main.scss
 ```
 
-1. Run `sass-dev-server ` on the `myproject` folder
+- Run `sass-dev-server` inside `myproject`
 
 ```
 $ myproject> sass-dev-server
 
-> Running sass-dev-server at http://localhost:90000
+> Running sass-dev-server at http://localhost:90000 with root set to "./"
 ```
 
-2. Add this to your HTML
+- Add this to your HTML
 ```
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/assets/styles/main.scss">
+```
+
+Additionally, you can add an optional `--root` argument
+```
+$ myproject> sass-dev-server --root=assets/
+
+> Running sass-dev-server at http://localhost:90000 with root set to "assets/"
+```
+
+That would make the server root to be at `myproject/assets`, thus your stylesheet path is shorten (without `assets/`)
+```
+<link rel="stylesheet" type="text/css" href="http://localhost:9000/styles/main.scss">
+```
+
+## Integration
+
+#### Express app
+```js
+var Compiler = require('sass-dev-server').Compiler,
+    Server = require('sass-dev-server').Server,
+    express = require('express');
+
+// create / setup your own express app
+var app = express();
+
+...
+
+// integrate sass-dev-server with your express app
+var compiler = new Compiler();
+var server = new Server(compiler);
+server.use(app);
+
+...
+
+app.listen(3000);
+```
+
+#### Render out to a file, useful for build tools
+```js
+var render = require('sass-dev-server').render;
+
+// path is relative to `process.cwd()`, and server root
+var file = 'assets/styles/main.scss';
+var out = 'assets/compiled/main.css';
+
+render(file, out).then(function(path) {
+    console.log('rendered to %s', path);
+});
+```
+
+## Configuration
+
+If you want to customise how server is running and / or how `sass` files are compiled, create a `sass-dev-server.config.js` in the same folder where you are running `sass-dev-server`
+
+```js
+// sass-dev-server.config.js
+module.exports = {
+    server: {
+        root: "assets/"
+        port: 10000,
+        headers: {
+            ...
+        }
+    },
+
+    compiler: {
+        // all node-sass options
+        ...
+    }
+}
 ```
