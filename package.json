@@ -11,7 +11,7 @@
     "sass-dev-server": "cli.js"
   },
   "scripts": {
-    "test": "npm run compile && mocha"
+    "test": "mocha"
   },
   "author": "Ken Vu <ken@gladeye.co.nz>",
   "license": "MIT",

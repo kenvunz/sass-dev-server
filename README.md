@@ -8,7 +8,10 @@ is a server that compile your sass files on demand, no watcher, no configuration
 
 - Optional configuration
 - Compile sass insanely fast on demand thanks to [node-sass](https://github.com/sass/node-sass)
-- Support glob importing out of the box, e.g `@import "components/*.scss"`
+- Enhanced version of `@import` directive:
+    - Glob patterns, e.g `@import "components/*.scss"`
+    - Include css files directly, e.g `@import "css:components/box.css"`
+    - Auto resolve npm packages, e.g `@import "npm:bourbon/app/assets/stylesheets/_bourbon.scss";`
 - Easy integration with other `express` app and build tools
 
 ## Installation
@@ -123,6 +126,26 @@ module.exports = {
     }
 }
 ```
+
+## Importer
+
+`sass-dev-server` comes with a flexible custom importer, there are a few things you can do
+
+- Glob importing
+```
+@import "components/*.scss"
+```
+
+- Import css files directly using `css:` prefix
+```
+@import "css:components/box.css"
+```
+
+- Import node modules using `npm:` prefix
+```
+@import "npm:bourbon/app/assets/stylesheets/_bourbon.scss";
+```
+
 
 ## Caveats
 - For development use only
