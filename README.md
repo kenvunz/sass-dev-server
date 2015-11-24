@@ -123,3 +123,8 @@ module.exports = {
     }
 }
 ```
+
+## Caveats
+- For development use only.
+- Use your network IP address or `.local` domain if you are on OSX instead of `localhost`, that will ensure that your stylesheet isn't resolved to `Not found` when other machines are view the HTML page
+- The server does nothing with path resolution inside your stylesheet, so make sure if your define `--root` parameter, take into account of other things that being referenced inside the stylesheet file, e.g images, fonts
