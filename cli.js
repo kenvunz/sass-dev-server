@@ -6,21 +6,21 @@ var Compiler = require('./lib/compiler'),
     express = require('express'),
     config = require('./lib/config');
 
-program.version(meta.version)
-    .option('-p, --port', 'port number to run server on', parseInt)
-    .usage('<root directory> [options]')
-    .arguments('<root directory>')
-    .action(function(dir) {
-        if(!config.server) config.server = {};
-        config.server.root = dir;
-    })
+program
+    .version(meta.version)
+    .option('-p, --port [port]', 'port number that server listen to', parseInt)
+    .option('-r, --root [root]', "server's root directory")
     .parse(process.argv);
+
+if(program.root) {
+    if(!config.server) config.server = {};
+    config.server.root = program.root;
+}
 
 if(program.port) {
     if(!config.server) config.server = {};
     config.server.port = program.port;
 }
-
 
 var compiler = new Compiler(config.compiler),
     server = new Server(compiler, config.server);
