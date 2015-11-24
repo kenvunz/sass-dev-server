@@ -1,0 +1,6 @@
+@import "npm:normalize.css/normalize.css";
+@import "npm:bourbon/app/assets/stylesheets/_bourbon.scss";
+
+body {
+    @include animation(scale 1.0s ease-in, slide 2.0s ease);
+}
