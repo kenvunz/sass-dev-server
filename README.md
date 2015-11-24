@@ -52,7 +52,7 @@ $ myproject> sass-dev-server
 > Running sass-dev-server at http://localhost:90000 with root set to "./"
 ```
 
-- Add this to your HTML
+- Add this to your HTML, and you are good to go!
 ```
 <link rel="stylesheet" type="text/css" href="http://localhost:9000/assets/styles/main.scss">
 ```
