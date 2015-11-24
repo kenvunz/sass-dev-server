@@ -1,6 +1,6 @@
 # sass-dev-server
 
-is a server that compile your sass files on demand, no watcher, no configuration required.
+is a dev server that compile your sass files on demand, no watcher, no configuration required.
 
 > Note: For development only, do not use in production!
 
