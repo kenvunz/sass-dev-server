@@ -4,12 +4,14 @@ var Compiler = require('./lib/compiler'),
     meta = require('./package.json'),
     program = require('commander'),
     express = require('express'),
-    config = require('./lib/config');
+    config = require('./lib/config'),
+    request = require('supertest');
 
 program
     .version(meta.version)
     .option('-p, --port [port]', 'port number that server listen to', parseInt)
     .option('-r, --root [root]', "server's root directory")
+    .option('-g, --get [path]', "make a GET request to a path")
     .parse(process.argv);
 
 if(program.root) {
@@ -27,4 +29,13 @@ var compiler = new Compiler(config.compiler),
 
 server.setup();
 server.app.use(express.static(server.opts.root));
-server.run();
+
+if(program.get) {
+    var route = program.get;
+    if(route[0] !== '/') route = '/' + route;
+    request(server.app).get(route).end(function(err, res) {
+        console.log(res.text.trim());
+    });
+} else {
+    server.run();    
+}
