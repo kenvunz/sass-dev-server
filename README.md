@@ -31,6 +31,7 @@ Options:
   -V, --version      output the version number
   -p, --port [port]  port number that server listen to
   -r, --root [root]  server's root directory
+  -g, --get [path]   make a GET request to a path
 ```
 
 #### Example
@@ -70,6 +71,11 @@ That would make the server root to be at `myproject/assets`, thus your styleshee
 ```
 
 ## Integration
+
+### Compiled to css files directly from CLI
+```
+sass-dev-server -g assets/styles/main.scss > assets/compiled/main.css
+```
 
 #### Express app
 ```js
