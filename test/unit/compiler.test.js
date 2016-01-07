@@ -1,5 +1,6 @@
 var Compiler = require('../../lib/compiler'),
-    path = require('path');
+    path = require('path'),
+    fs = require('fs');
 
 describe('lib/compiler', function() {
 
@@ -73,6 +74,29 @@ describe('lib/compiler', function() {
             .then(function(css) {
                 expect(instance.result).to.be.an('object');
                 expect(css).to.equal("body{color:blue}\n");
+            }); 
+        });
+
+        it.only('should work when globbed files have been changed', function() {
+            Compiler.defaults = {outputStyle: "compressed"};
+
+            var instance = new Compiler(),
+                file = path.join(__dirname, '../fixtures/glob.scss'),
+                a = path.join(__dirname, '../fixtures/glob/a.scss'),
+                content = fs.readFileSync(a, 'utf8');
+
+            return instance.render(file)
+            .then(function(css) {
+                expect(instance.result).to.be.an('object');
+                expect(css).to.equal("body{color:blue}\n");
+
+                fs.writeFileSync(a, content.replace('blue;', 'red;'));
+
+                return instance.render(file)
+                .then(function(css) {
+                    fs.writeFileSync(a, content);
+                    expect(css).to.equal("body{color:red}\n");
+                });
             }); 
         });
 
