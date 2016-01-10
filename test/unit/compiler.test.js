@@ -77,7 +77,7 @@ describe('lib/compiler', function() {
             }); 
         });
 
-        it.only('should work when globbed files have been changed', function() {
+        it('should work when globbed files have been changed', function() {
             Compiler.defaults = {outputStyle: "compressed"};
 
             var instance = new Compiler(),
