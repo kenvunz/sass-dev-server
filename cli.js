@@ -28,6 +28,13 @@ var compiler = new Compiler(config.compiler),
     server = new Server(compiler, config.server);
 
 server.setup();
+
+server.app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 server.app.use(express.static(server.opts.root));
 
 if(program.get) {
