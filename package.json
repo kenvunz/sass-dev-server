@@ -1,6 +1,6 @@
 {
   "name": "sass-dev-server",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "a dev server that compile your sass files on demand, no watcher, no configuration required",
   "main": "index.js",
   "repository": {
