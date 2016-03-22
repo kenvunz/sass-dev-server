@@ -50,7 +50,7 @@ myproject
 ```
 $ myproject> sass-dev-server
 
-> Running sass-dev-server at http://localhost:90000 with root set to "./"
+> Running sass-dev-server at http://localhost:9000 with root set to "./"
 ```
 
 - Add this to your HTML, and you are good to go!
@@ -62,7 +62,7 @@ Additionally, you can add an optional `--root` argument
 ```
 $ myproject> sass-dev-server --root=assets/
 
-> Running sass-dev-server at http://localhost:90000 with root set to "assets/"
+> Running sass-dev-server at http://localhost:9000 with root set to "assets/"
 ```
 
 That would make the server root to be at `myproject/assets`, thus your stylesheet path is shorten (without `assets/`)
