@@ -44,5 +44,5 @@ if(program.get) {
         console.log(res.text.trim());
     });
 } else {
-    server.run();    
+    server.run();
 }
